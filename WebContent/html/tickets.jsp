@@ -111,7 +111,7 @@
 					       <div class="col-sm-4">
 					    			<div class="card">
 			                            <div class="card-body">
-			                                <h4 class="card-title"><%=project.getProjectName()%></h4>
+			                                <h4 class="card-title"><%=project.getTicketproject()%></h4>
 			                                <div class="text-end">
 			                                    <span class="text-muted">Progress</span>
 			                                </div>
@@ -122,8 +122,8 @@
 			                                        aria-valuemax="100"></div>
 			                                </div>
 			                                <div style="margin-top: 25px;">	                                    
-												<a href="updateproject?id=<%=project.getProjectID()%>" class="btn btn-info btn-sm"  style="margin-right: 10px;  color: #fff;">Update</a>
-												<a href="deleteproject?id=<%=project.getProjectID()%>" class="btn btn-danger btn-sm ml-2">Archive</a>
+												<a href="updateproject?id=<%=project.getTicket_id()%>" class="btn btn-info btn-sm"  style="margin-right: 10px;  color: #fff;">Update</a>
+												<a href="deleteproject?id=<%=project.getTicket_id()%>" class="btn btn-danger btn-sm ml-2">Archive</a>
 			                                </div>    
 			                            </div>
 			                        </div>

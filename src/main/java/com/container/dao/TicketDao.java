@@ -17,7 +17,6 @@ import java.util.Date;
 import com.container.beans.ListProjects;
 import com.container.beans.ListTickets;
 import com.container.beans.TicketData;
-import com.mysql.jdbc.PreparedStatement;
 
 public class TicketDao {
 		

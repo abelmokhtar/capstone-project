@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.naming.java.javaURLContextFactory;
 import org.eclipse.jdt.internal.compiler.ast.JavadocArraySingleTypeReference;
@@ -16,7 +17,7 @@ import java.util.Date;
 
 import com.container.beans.ListProjects;
 import com.container.beans.Projects;
-import com.mysql.jdbc.PreparedStatement;
+
 
 public class ApplicationDao {
 	
@@ -151,5 +152,51 @@ public class ApplicationDao {
 			// TODO: handle exception
 		}
 		return rowArchive;
+	}
+	
+public String storeCredentials(String user, String pass, String email, String token) throws SQLException {
+	
+		Connection c = DBConnection.getConnectionToDatabase();
+		try {
+			String insertQuery = "INSERT INTO PROFILE VALUES (?,?,?,?,?,?)";
+			final String PENDING = "Pending";
+			java.sql.PreparedStatement statement  = c.prepareStatement(insertQuery);
+			
+			int credId = (int) (Math.random() * 1000);
+			
+			statement.setInt(1, credId);
+			statement.setString(2, user);
+			statement.setString(3, pass);
+			statement.setString(4, email);
+			//"Pending" refers to the validation status of the stored credentials, which will be changed upon successful email verification.
+			statement.setString(5, PENDING);
+			//validation token
+			statement.setString(6, token);
+			
+			if(statement.execute())
+				return "successful";
+			else
+				return "unsuccessful";
+		}
+		finally {
+			c.close();
+		}
+		
+	}
+
+	public boolean verifyToken(String token) throws SQLException {
+		Connection c = DBConnection.getConnectionToDatabase();
+		try {
+			String updateQuery = "UPDATE PROFILE SET VERIFICATION_STATUS = 'verified' WHERE VALIDATION_TOKEN = ?";
+			System.out.println("verifying token..."+token);
+			java.sql.PreparedStatement statement  = c.prepareStatement(updateQuery);
+			statement.setString(1, token);
+			
+			return statement.execute();
+			
+		}
+		finally {
+			c.close();
+		}
 	}
 }

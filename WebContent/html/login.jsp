@@ -1,4 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -27,7 +26,7 @@
                     <div class="col-sm-3 align-middle" style="text-align: center;">                                  
                             <div style="font-size: 25pt; margin-bottom: 15px; padding-bottom: 5px;"><span class="logo-text" style="margin-left: 20px;">Bug Tracker</span></b></div>
                             <div class="col-md-12">${msg}</div>
-                            <form action="authenticate" method="post" style="margin: 0 auto; display: table; width: 80%; padding-top: 25px; padding-bottom: 25px;" class="border-top border-bottom">
+                            <form action="../authenticate" method="post" style="margin: 0 auto; display: table; width: 80%; padding-top: 25px; padding-bottom: 25px;" class="border-top border-bottom">
                                 <input type="text" style="margin-bottom: 10px; padding: 10px 10px;" class="form-control" name="username" placeholder="Username...">
                                 <input type="text"  style="margin-bottom: 20px;  padding: 10px 10px;" class="form-control" name="password" placeholder="Password...">
                                 <input type="submit" class="btn btn-success" style="color: #FFF;" value="Login User"/>
