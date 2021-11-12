@@ -6,12 +6,12 @@ public class ListTickets {
 
 	private int ticket_id;
 	private String tickettitle;
-	private String ticketproject;
 	private String ticketdescription;
-	private String assignteam;
-	private String assignuser;
+	private int ticketproject;
+	private int assignteam;
+	private int assignuser;
 	private Timestamp tickettimestamp;
-	private int status; 	
+	private int active; 	
 	
 	
 	public int getTicket_id() {
@@ -27,10 +27,10 @@ public class ListTickets {
 		this.tickettitle = tickettitle;
 	}
 	
-	public String getTicketproject() {
+	public int getTicketproject() {
 		return ticketproject;
 	}
-	public void setTicketproject(String ticketproject) {
+	public void setTicketproject(int ticketproject) {
 		this.ticketproject = ticketproject;
 	}
 	public String getTicketdescription() {
@@ -39,16 +39,16 @@ public class ListTickets {
 	public void setTicketdescription(String ticketdescription) {
 		this.ticketdescription = ticketdescription;
 	}
-	public String getAssignteam() {
+	public int getAssignteam() {
 		return assignteam;
 	}
-	public void setAssignteam(String assignteam) {
+	public void setAssignteam(int assignteam) {
 		this.assignteam = assignteam;
 	}
-	public String getAssignuser() {
+	public int getAssignuser() {
 		return assignuser;
 	}
-	public void setAssignuser(String assignuser) {
+	public void setAssignuser(int assignuser) {
 		this.assignuser = assignuser;
 	}
 	
@@ -59,9 +59,9 @@ public class ListTickets {
 		this.tickettimestamp = tickettimestamp;
 	}
 	public int getStatus() {
-		return status;
+		return active;
 	}
-	public void setStatus(int status) {
-		this.status = status;
+	public void setStatus(int active) {
+		this.active = active;
 	}
 }

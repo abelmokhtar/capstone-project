@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List" errorPage="error.jsp" isErrorPage="false"%>
+<%@page import="com.container.beans.ListTeam"%>
+<%@page import="com.container.beans.Users"%>
 <html dir="ltr" lang="en">
 <head>
     <meta charset="utf-8">
@@ -70,88 +75,66 @@
             <div class="page-breadcrumb">
                 <div class="row align-items-center">
                     <div class="col-md-6 col-8 align-self-center">
-                        <h3 class="page-title mb-0 p-0">Create a Ticket</h3>
+                        <h3 class="page-title mb-0 p-0">Create Team</h3> 
                     </div>
                 </div>
-
                 <div class="row align-items-center">
                     <div class="col-md-6 col-8 align-self-center">
                             <ul class="nav nav-pills" style="padding-top: 25px;">
                                 <li class="nav-item" style="margin-right: 10px;">
-                                    <a href="tickets" class="btn btn-success d-none d-md-inline-block text-white">Ticket Board</a>
+                                    <a href="createteam" class="btn btn-success d-none d-md-inline-block text-white">Create Team</a>
                                 </li>
                                 <li class="nav-item" style="margin-right: 10px;">
-                                    <a href="createticket" class="btn btn-success d-none d-md-inline-block text-white">Create Ticket</a>
-                                </li>
-                                <li class="nav-item" style="margin-right: 10px;">
-                                    <a href="ticketbacklogs" class="btn btn-success d-none d-md-inline-block text-white active">Backlogs Tickets</a>
+                                    <a href="manageteam" class="btn btn-success d-none d-md-inline-block text-white">Manage Team</a>
                                 </li>
                             </ul>
                       </div>
                 </div>
-                
-                
-                <div class="row align-items-center">
-                    <div class="col-md-6 col-8 align-self-center">
-                            <ul class="nav nav-pills" style="padding-top: 25px;">
-                                <li class="nav-item" style="margin-right: 10px;">
-                                    <div class="dropdown">
-                                        <select class="form-select">
-                                          <option value="">Load backlog by project</option>
-                                          <option value="">Capstone Project 1</option>
-                                          <option value="">Capstone Project 2</option>
-                                        </select>
-                                    </div>
-                                </li>
-                            </ul>
-                      </div>
-                </div>
-                
             </div>
             <div class="container-fluid">
-            	<div class="row">    
-	                    <div class="col-3">
-	                        <h5 style="margin-bottom: 20px;">Create a ticket</h5>
-	                    </div>    
-                </div>
-                <div class="row p-2">
-                    	<div class="col-6 p-3" style="background: #FFF; margin-right: 30px;">
-                       		<h4 class="card-title" style="margin-bottom: 20px;">Backlogs</h4>
-	                   		<div class="card border" style="border: 1px solid #C5C5C5; margin-bottom: 15px;">
-	                            <div class="card-body">
-	                                <h5>Example text to build</h5>
-	                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-	                              	<a href="" style="color: #FFF;" type="button" class="btn btn-info btn-sm">Update</a>
-	                                <a href="" style="color: #FFF;" type="button" class="btn btn-danger btn-sm">Archive</a>
-	                            </div>
-	                        </div>
-	                        <div class="card border" style="border: 1px solid #C5C5C5;">
-	                            <div class="card-body">
-	                                <h5>Example text to build</h5>
-	                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-	                                <a href="" style="color: #FFF;" type="button" class="btn btn-info btn-sm">Update</a>
-	                                <a href="" style="color: #FFF;" type="button" class="btn btn-danger btn-sm">Archive</a>
-	                            </div>
-	                        </div>
-	                        <div class="card border" style="border: 1px solid #C5C5C5;">
-	                            <div class="card-body">
-	                                <h5>Example text to build</h5>
-	                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-	                                <a href="" style="color: #FFF;" type="button" class="btn btn-info btn-sm">Update</a>
-	                                <a href="" style="color: #FFF;" type="button" class="btn btn-danger btn-sm">Archive</a>
-	                            </div>
-	                        </div>
-	                        <div class="card border" style="border: 1px solid #C5C5C5;">
-	                            <div class="card-body">
-	                                <h5>Example text to build</h5>
-	                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-	                                <a href="" style="color: #FFF;" type="button" class="btn btn-info btn-sm">Update</a>
-	                                <a href="" style="color: #FFF;" type="button" class="btn btn-danger btn-sm">Archive</a>
-	                            </div>
-	                        </div>
-	                    </div>
-                    	
-                </div>
+	                <div class="row mb-4">
+	                	<div class="col-md-6 col-8 align-self-center">
+                      		 <form action="createteam" method="post">
+                                 <div class="form-row align-items-center">
+                                     <div style="float: left; margin-right: 10px;">
+                                         <input type="text" class="form-control mb-2" value="" name="teamname" style="width: 350px; padding: 15px;" id="inlineFormInput" placeholder="Team Name.." />
+                                         <input type="hidden" name="teamid" value="" />
+                                     </div>
+                                     <div style="float: left;">
+                                    		<input type="submit" class="btn btn-success d-none d-md-inline-block text-white" name="btnaction" value="Create">
+                                     </div>
+                                 </div>
+                             </form>
+                     	 </div>
+	                </div>
+	                <div class="row p-2">
+			               <%
+				                List<ListTeam> teams = (ArrayList) request.getAttribute("teams");
+				                Iterator<ListTeam> iterator = teams.iterator();
+				                while (iterator.hasNext()) {
+				                ListTeam team = iterator.next();
+		 	               %>
+		 	              <div class="col-4 p-3" style="background: #FFF; margin-right: 30px; margin-top: 34px;">
+		                        	<h4 class="card-title" style="margin-bottom: 20px;"><%=team.getTeam_name()%></h4>
+			                        <ul class="list-group list-group-flush border-bottom" style="margin-bottom: 25px;">
+		                            <%
+						                List<Users> users = (ArrayList) request.getAttribute("users");
+						                Iterator<Users> iteratoruser = users.iterator();
+						                while (iteratoruser.hasNext()) {
+						               		Users user = iteratoruser.next();
+			 	               		%>	
+		                            <li class="list-group-item" style="border: 0px;">
+		                            	 <% if(user.getTeam_id() == team.getTeam_id()){  %>
+			                            		<%=user.getFirstname()%> &nbsp; <%=user.getLastname()%> 
+						 	          	  <% }
+		                            	 }
+		                            	 %>
+		                            </li>
+		                        </ul>    
+		                        <a class="btn btn-primary btn-sm"  style="float: right !important; margin-left: 15px;">Invite new team member</a>
+		                    </div>    
+		                    <% } %>      
+					</div>	   
             </div>
         </div>
     </div>
@@ -182,10 +165,6 @@
     	
     	li.sidebar-item{
     	 	border-bottom: 1px solid #F7F7F7;
-    	}
-    	
-    	select.form-select{
-    		width: 450px !important;
     	}
     </style>
 

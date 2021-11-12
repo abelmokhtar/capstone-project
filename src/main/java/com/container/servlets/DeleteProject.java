@@ -18,46 +18,41 @@ import com.container.dao.ApplicationDao;
 
 @WebServlet("/deleteproject")	
 public class DeleteProject extends HttpServlet {
+	private String querystatus = null;
+	private String messageString = null;
+	private String btnType = null;
 	private Notifications notify = new Notifications();
-	private String btn = "";
-	private String btnType = "Create";
-	private String pagerequest = null;
-	private String message = null;
-	
-	Projects project = null;
+	ApplicationDao dao = new ApplicationDao();		
+	private String state;
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {	
 		
-		String id = req.getParameter("projectid");
+		// Get data from form
 		String action = req.getServletPath();
-		String state = null;
 		
 		switch(action){
 			case "/deleteproject":
 				try {
-					state = deleteProjectEntry(req, resp);
-				} catch (SQLException | IOException e1) {
-					e1.printStackTrace();
+					state = deleteTeam(req, resp);
+				} catch (SQLException | IOException e) {
+					e.printStackTrace();
 				}
 			    break;
 			default:
-				state = ""; // this is needed to reset the state of the form
+				state = "";
 				break;
 		}
-		
-		ApplicationDao dao = new ApplicationDao();		
-		List<ListProjects> projects = dao.getAllProjects();
-		req.setAttribute("projects", projects);
-		req.setAttribute("btn", btnType);
-		req.setAttribute("request", "dashboard");
-		req.getRequestDispatcher("/html/dashboard.jsp").forward(req, resp);
+		List<ListProjects> teams = dao.getAllProjects();
+		req.setAttribute("teams", teams);
+ 		req.getRequestDispatcher("/html/teamcreate.jsp").forward(req, resp);
    }
    
-   private String deleteProjectEntry(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException {
-		ApplicationDao dao = new ApplicationDao();
+   private String deleteTeam(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException {
+	    ApplicationDao dao = new ApplicationDao();
 		boolean methodState = dao.archiveProject(req.getParameter("id"));
-
+		String message = null;
+		
 		if(methodState) {
 			message = "<div class='alert alert-success' role='alert'>Moved to archives</div>";
 		}else {

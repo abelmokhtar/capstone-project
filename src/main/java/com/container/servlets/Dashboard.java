@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.container.beans.Notifications;
 import com.container.beans.Projects;
+import com.container.beans.GetTimeStamp;
 import com.container.beans.ListProjects;
 import com.container.dao.ApplicationDao;
 
@@ -28,9 +29,9 @@ public class Dashboard extends HttpServlet{
 	
 	private String querystatus = null;
 	private Notifications notify = new Notifications();
-	
 	private String btn = "";
 
+	GetTimeStamp timeStamp;
 	private String currentrequest = "dashboard";
 	
 	@Override
@@ -79,7 +80,7 @@ public class Dashboard extends HttpServlet{
 	
    public String insertProject(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
 		String projectname = req.getParameter("projectname");
-		Projects projects = new Projects(0, projectname,  getCurrentTimeStamp(), 1);
+		Projects projects = new Projects(0, projectname, GetTimeStamp.getCurrentTimeStamp(), 1);
 		
 		ApplicationDao dao = new ApplicationDao();
 		int rows = dao.insertProjects(projects);		
@@ -91,10 +92,5 @@ public class Dashboard extends HttpServlet{
 		}
 		
 		return querystatus;
-   }
-   
-   private static java.sql.Timestamp getCurrentTimeStamp() {
-		java.util.Date today = new java.util.Date();
-		return new java.sql.Timestamp(today.getTime());
    }
 }

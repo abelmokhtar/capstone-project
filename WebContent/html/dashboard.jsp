@@ -64,7 +64,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="team" aria-expanded="false">
+                            <a class="sidebar-link" href="createteam" aria-expanded="false">
                                 <span class="hide-menu">Team</span>
                             </a>
                         </li>       

@@ -23,21 +23,28 @@ import com.container.dao.TeamDao;
 import com.container.beans.Users;
 import com.container.dao.UserDao;
 
-@WebServlet("/teamcreate")
-public class Team extends HttpServlet{
+@WebServlet("/manageteam")
+public class TeamManage extends HttpServlet{
 	
 	private String messageString = null;
 	private String btnType = null;
-		
+	
+
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		// load all teams
 		TeamDao dao = new TeamDao();		
 		List<ListTeam> teams = dao.getAllTeam();
 		req.setAttribute("teams", teams);
+		req.setAttribute("teamslists", teams);
 
+		// Load all the users
 		UserDao userdao = new UserDao();		
 		List<Users> users = userdao.getAllUsers();
 		req.setAttribute("users", users);
-		req.getRequestDispatcher("/html/teamcreate.jsp").forward(req, resp);
+		
+		// Execute save
+ 		req.getRequestDispatcher("/html/teammanage.jsp").forward(req, resp);
    }
 }

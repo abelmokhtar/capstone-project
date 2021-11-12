@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex,nofollow">
-    <title>Bug Tracker - Dashboard</title>
+    <title>Bug Tracker - Ticket Board</title>
     <link rel="icon" type="image/png" sizes="16x16" href="http://localhost/capstone/assets/images/favicon.png">
     <link href="http://localhost/capstone/assets/plugins/chartist/dist/chartist.min.css" rel="stylesheet">
     <link href="http://localhost/capstone/css/style.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="team" aria-expanded="false">
+                            <a class="sidebar-link" href="createteam" aria-expanded="false">
                                 <span class="hide-menu">Team</span>
                             </a>
                         </li>       
@@ -90,9 +90,9 @@
                                 <li class="nav-item" style="margin-right: 10px;">
                                     <a href="createticket" class="btn btn-success d-none d-md-inline-block text-white">Create Ticket</a>
                                 </li>
-                                <li class="nav-item" style="margin-right: 10px;">
+                                <!--  <li class="nav-item" style="margin-right: 10px;">
                                     <a href="ticketbacklogs" class="btn btn-success d-none d-md-inline-block text-white">Backlogs Tickets</a>
-                                </li>
+                                </li> -->
                             </ul>
                       </div>
                 </div>
@@ -101,59 +101,21 @@
                 <div class="row p-2">
                     <div class="col-3 p-3" style="background: #FFF; margin-right: 30px;">
                         <h4 class="card-title" style="margin-bottom: 20px;">TO-DO</h4>
-                        
                         <%
-				                List<ListTickets> tickets = (ArrayList) request.getAttribute("tickets");
-				                Iterator<ListTickets> iterator = tickets.iterator();
-				                while (iterator.hasNext()) {
-				                ListTickets project = iterator.next();
+				             List<ListTickets> tickets = (ArrayList) request.getAttribute("tickets");
+				             Iterator<ListTickets> iterator = tickets.iterator();
+				             while (iterator.hasNext()) {
+				             ListTickets ticket = iterator.next();
 		 	            %>
-					       <div class="col-sm-4">
-					    			<div class="card">
-			                            <div class="card-body">
-			                                <h4 class="card-title"><%=project.getTicketproject()%></h4>
-			                                <div class="text-end">
-			                                    <span class="text-muted">Progress</span>
-			                                </div>
-			                                <span class="text-success">0%</span>
-			                                <div class="progress">
-			                                    <div class="progress-bar bg-success" role="progressbar"
-			                                        style="width: 0%; height: 6px;" aria-valuenow="25" aria-valuemin="0"
-			                                        aria-valuemax="100"></div>
-			                                </div>
-			                                <div style="margin-top: 25px;">	                                    
-												<a href="updateproject?id=<%=project.getTicket_id()%>" class="btn btn-info btn-sm"  style="margin-right: 10px;  color: #fff;">Update</a>
-												<a href="deleteproject?id=<%=project.getTicket_id()%>" class="btn btn-danger btn-sm ml-2">Archive</a>
-			                                </div>    
-			                            </div>
-			                        </div>
-				    		</div>
-						   <% } %>
-                        
-                        <div class="card border" style="border: 1px solid #C5C5C5;">
-                            <div class="card-body">
-                                <h5>Example text to build</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                        <div class="card border" style="border: 1px solid #C5C5C5;">
-                            <div class="card-body">
-                                <h5>Example text to build</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                        <div class="card border" style="border: 1px solid #C5C5C5;">
-                            <div class="card-body">
-                                <h5>Example text to build</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                        <div class="card border" style="border: 1px solid #C5C5C5;">
-                            <div class="card-body">
-                                <h5>Example text to build</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
+					    <div class="col-sm-12">
+					    		<div class="card border" style="border: 1px solid #C5C5C5;">
+		                            <div class="card-body">
+		                                <h5><%=ticket.getTickettitle()%></h5>
+		                                <p class="card-text"><%=ticket.getTicketdescription()%></p>
+		                            </div>
+			                    </div>
+				        </div>
+				    	<% } %>
                     </div>
                     <div class="col-3 p-3" style="background: #FFF; margin-right: 30px;">
                         <h4 class="card-title" style="margin-bottom: 20px;">IN PROGRESS</h4>  
